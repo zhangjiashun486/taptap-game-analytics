@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><title>个人中心 - 原型</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner">
+  <a class="logo" href="../index.html">TapTap<small>·课设原型</small></a>
+  <div class="nav">
+    <a href="home.html">首页</a><a href="recommend.html">推荐</a><a href="qa.html">问答</a><a class="on" href="profile.html">我的</a>
+  </div>
+  <a class="muted" href="login.html">退出</a>
+</div></div>
+<div class="page">
+  <div class="card row">
+    <div style="width:64px;height:64px;border-radius:50%;background:#f25d8e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;">玩</div>
+    <div><h3 style="margin:0 0 4px;">玩家小码</h3><span class="muted">账号：demo_user · 注册于 2026-09-10</span></div>
+    <div style="margin-left:auto;text-align:center;"><div class="kpi">28</div><small class="muted">收藏</small></div>
+    <div style="text-align:center;"><div class="kpi">12</div><small class="muted">玩过</small></div>
+    <div style="text-align:center;"><div class="kpi">46</div><small class="muted">浏览</small></div>
+  </div>
+  <div class="grid g2 mt">
+    <div class="card"><h3>❤️ 我的收藏</h3>
+      <div class="row between mb"><span><img class="mini-cover" src="../assets/covers/206776.png">蛋仔派对</span><span class="muted">休闲·竞技 · ⭐7.8</span><a class="muted" href="detail.html?id=206776">查看</a></div>
+      <div class="row between mb"><span><img class="mini-cover" src="../assets/covers/49995.jpg">第五人格</span><span class="muted">非对称对抗 · ⭐7.3</span><a class="muted" href="detail.html?id=49995">查看</a></div>
+      <div class="row between mb"><span><img class="mini-cover" src="../assets/covers/43639.png">我的世界：移动版</span><span class="muted">沙盒 · ⭐6.6</span><a class="muted" href="detail.html?id=43639">查看</a></div>
+      <button class="btn ghost" style="margin-top:6px;" onclick="alert('演示：清空行为（用于测试冷启动推荐）')">清空我的行为</button>
+    </div>
+    <div class="card"><h3>📊 我的兴趣画像（基于行为 + 聚类）</h3>
+      <div class="muted mb">你的行为偏好分布：</div>
+      <div class="star-row"><span>休闲/派对</span><div class="bar"><i style="width:70%"></i></div><span>70%</span></div>
+      <div class="star-row"><span>竞技/对抗</span><div class="bar"><i style="width:55%"></i></div><span>55%</span></div>
+      <div class="star-row"><span>沙盒/创造</span><div class="bar"><i style="width:30%"></i></div><span>30%</span></div>
+      <p class="muted mt">管理端可查看全体用户的聚类画像（学习型/竞技型/休闲型…）</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

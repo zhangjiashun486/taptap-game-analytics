@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><title>智能问答 - 原型</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner">
+  <a class="logo" href="../index.html">TapTap<small>·课设原型</small></a>
+  <div class="nav">
+    <a href="home.html">首页</a><a href="recommend.html">推荐</a><a class="on" href="qa.html">问答</a><a href="profile.html">我的</a>
+  </div>
+  <a class="muted" href="login.html">登录</a>
+</div></div>
+<div class="page">
+  <h2>💬 数据问答</h2>
+  <div class="card chat">
+    <div class="msg">你好！我是平台的数据问答助手。可以问我关于已采集的 10221 款游戏的问题，例如评分、热度、标签、聚类。</div>
+    <div class="msg me" id="askBox" style="display:none;"></div>
+    <div class="msg" id="ansBox" style="display:none;"></div>
+    <div style="margin-top:12px;">
+      <span class="tag" style="cursor:pointer;padding:6px 12px;" onclick="ask('评分 9 分以上的单机游戏有哪些？')">评分 9 分以上？</span>
+      <span class="tag" style="cursor:pointer;padding:6px 12px;" onclick="ask('预约人数最高的 5 款游戏')">预约最高 Top5</span>
+      <span class="tag" style="cursor:pointer;padding:6px 12px;" onclick="ask('类似原神的游戏')">类似原神</span>
+      <span class="tag" style="cursor:pointer;padding:6px 12px;" onclick="ask('平台一共采集了多少款游戏？')">共多少款？</span>
+    </div>
+    <div class="row mt">
+      <input id="input" class="searchbox" style="max-width:none;flex:1;" placeholder="输入问题…" onkeydown="if(event.key==='Enter')ask(this.value)">
+      <button class="btn" onclick="ask(document.getElementById('input').value)">发送</button>
+    </div>
+  </div>
+</div>
+<script>
+function ask(q){
+  if(!q) return;
+  document.getElementById('askBox').style.display=''; document.getElementById('askBox').textContent=q;
+  var a;
+  if(q.indexOf('9 分以上')>=0) a='评分 9 分以上的单机游戏共 128 款，例如：《我的世界》9.0、《空洞骑士》9.2、《星露谷物语》9.1…（数据来源：t_game + 标签=单机）';
+  else if(q.indexOf('预约')>=0) a='预约人数最高的 5 款游戏：1.《明日方舟：终末地》210万 2.《代号：无限大》156万 3.《绝区零》98万…（数据来源：t_game 按预约数倒序）';
+  else if(q.indexOf('原神')>=0) a='与《原神》相似的游戏（同属「热门大作/开放世界」聚类）：《鸣潮》《幻塔》《燕云十六声》…推荐理由：同簇且同标签（开放世界、二次元）。';
+  else if(q.indexOf('多少款')>=0) a='当前数据库共收录 10,221 款游戏（TapTap 闭合爬取，覆盖 2,259 个标签），其中有效详情 10,219 款。';
+  else if(q.indexOf('口碑')>=0) a='「口碑神作」簇共 386 款，代表游戏：《我的世界》《崩坏：星穹铁道》《光·遇》…';
+  else a='暂时无法理解这个问题 🤔 试试上面的示例问题，或换个说法（我会记录日志用于扩展问题库）。';
+  var b=document.getElementById('ansBox');
+  b.style.display=''; b.textContent='🔍 '+a;
+  document.getElementById('input').value='';
+}
+</script>
+</body>
+</html>

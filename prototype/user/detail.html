@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><title>游戏详情 - 原型</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner">
+  <a class="logo" href="../index.html">TapTap<small>·课设原型</small></a>
+  <div class="nav">
+    <a href="home.html">首页</a><a href="recommend.html">推荐</a><a href="qa.html">问答</a><a href="profile.html">我的</a>
+  </div>
+  <div class="searchbox"><input placeholder="搜索游戏 / 标签…"></div>
+  <a class="muted" href="login.html">登录</a>
+</div></div>
+<div class="page">
+  <a href="home.html" class="muted">← 返回首页</a>
+  <div class="card mt" style="padding:22px;">
+    <div class="row" style="align-items:flex-start;">
+      <div class="detail-cover" id="cover"><span>🎮</span></div>
+      <div style="flex:1;padding-left:18px;">
+        <h2 id="name" style="margin:0 0 6px;">蛋仔派对</h2>
+        <div id="tags"></div>
+        <div class="row mt">
+          <div style="text-align:center;padding:6px 18px;border-right:1px solid #eee;"><div class="kpi" id="score">7.8</div><small class="muted">综合评分</small></div>
+          <div style="text-align:center;padding:6px 18px;border-right:1px solid #eee;"><div class="kpi" id="fans">3870万</div><small class="muted">关注</small></div>
+          <div style="text-align:center;padding:6px 18px;"><div class="kpi" id="review">5.1万</div><small class="muted">评论</small></div>
+        </div>
+        <div class="row mt">
+          <button class="btn" id="btnFav" onclick="toggleFav()">☆ 收藏</button>
+          <button class="btn ghost" id="btnPlay" onclick="togglePlay()">玩过</button>
+          <button class="btn ghost" onclick="alert('演示：评分弹窗（1~10分）')">评分</button>
+        </div>
+      </div>
+    </div>
+    <div class="alert" style="margin-top:14px;">🪤 <b>所属聚类：<span class="cluster-a" id="cluster">口碑神作</span></b> —— 高分高关注类型，聚类依据：评分 7.8、好评占比 92%、热度/关注比 0.35（详见管理端聚类分析）</div>
+  </div>
+
+  <div class="grid g2 mt">
+    <div class="card">
+      <h3>⭐ 评分结构</h3>
+      <div id="stars"></div>
+    </div>
+    <div class="card">
+      <h3>📝 简介</h3>
+      <p class="muted" id="intro" style="line-height:1.8;">《蛋仔派对》是一款潮玩题材的休闲竞技手游，Q萌蛋仔加入闯关派对……（原型为演示简介，正式数据来自采集详情）</p>
+    </div>
+  </div>
+
+  <div class="card mt">
+    <h3>🎯 同簇相似游戏（点击进入详情）</h3>
+    <div class="grid g3" id="similar"></div>
+  </div>
+</div>
+<script>
+var INFO = {
+ '206776': {n:'蛋仔派对',s:'7.8',f:'3870万',r:'5.1万',tags:['休闲','竞技','多人联机','派对'],c:'热门大作',c2:'cluster-a',cover:'../assets/covers/206776.png',
+   stars:[[5,72],[4,15],[3,7],[2,3],[1,3]], intro:'《蛋仔派对》是一款潮玩题材的休闲竞技手游，Q萌蛋仔加入闯关派对，支持百变外观与地图编辑器。'},
+ '168332': {n:'原神',s:'7.9',f:'3891万',r:'50.6万',tags:['开放世界','二次元','RPG','冒险'],c:'热门大作',c2:'cluster-b',cover:'../assets/covers/168332.png',
+   stars:[[5,58],[4,22],[3,10],[2,5],[1,5]], intro:'《原神》是一款开放世界冒险游戏，旅行者将在提瓦特大陆邂逅同伴，发掘尘封的真相。'},
+ '2301': {n:'王者荣耀',s:'5.0',f:'9830万',r:'37.2万',tags:['MOBA','竞技','PVP','团队'],c:'争议/待改进',c2:'cluster-d',cover:'../assets/covers/2301.png',
+   stars:[[5,45],[4,20],[3,12],[2,8],[1,15]], intro:'《王者荣耀》是国民级 MOBA 手游，5v5 公平对战，多种模式与英雄供玩家选择。'},
+ '224267': {n:'崩坏：星穹铁道',s:'7.5',f:'1970万',r:'13.1万',tags:['回合制','二次元','科幻','RPG'],c:'口碑神作',c2:'cluster-a',cover:'../assets/covers/224267.png',
+   stars:[[5,70],[4,18],[3,7],[2,3],[1,2]], intro:'《崩坏：星穹铁道》是一款银河冒险题材的回合制 RPG，玩家将搭乘星穹列车穿越银河。'},
+ '58881': {n:'香肠派对',s:'8.6',f:'4334万',r:'73.1万',tags:['射击','吃鸡','竞技','多人联机'],c:'口碑神作',c2:'cluster-c',cover:'../assets/covers/58881.png',
+   stars:[[5,78],[4,15],[3,5],[2,1],[1,1]], intro:'《香肠派对》是一款大逃杀射击手游，Q 版香肠人形象，玩法轻松欢乐。'},
+ '49995': {n:'第五人格',s:'7.3',f:'2280万',r:'9.5万',tags:['非对称对抗','恐怖','竞技'],c:'热门大作',c2:'cluster-a',cover:'../assets/covers/49995.jpg',
+   stars:[[5,62],[4,20],[3,10],[2,4],[1,4]], intro:'《第五人格》是一款非对称性对抗竞技手游，荒诞哥特画风，悬疑烧脑剧情。'},
+ '43639': {n:'我的世界：移动版',s:'6.6',f:'3994万',r:'12.5万',tags:['沙盒','创造','冒险','多人联机'],c:'热门大作',c2:'cluster-a',cover:'../assets/covers/43639.png',
+   stars:[[5,60],[4,18],[3,10],[2,6],[1,6]], intro:'《我的世界：移动版》是沙盒建造游戏《我的世界》的手机版本，自由创造无限世界。'},
+ '62448': {n:'光·遇',s:'7.9',f:'2237万',r:'13.9万',tags:['社交','治愈','冒险','唯美'],c:'口碑神作',c2:'cluster-c',cover:'../assets/covers/62448.png',
+   stars:[[5,75],[4,16],[3,5],[2,2],[1,2]], intro:'《光·遇》是一款社交冒险游戏，在云端王国与陌生人相遇同行，画面唯美治愈。'},
+ '234493': {n:'绝区零',s:'6.7',f:'1410万',r:'11.4万',tags:['动作','二次元','ARPG','都市'],c:'争议/待改进',c2:'cluster-d',cover:'../assets/covers/234493.png',
+   stars:[[5,50],[4,22],[3,13],[2,7],[1,8]], intro:'《绝区零》是一款都市幻想题材的动作游戏，玩家将深入危险空洞展开战斗。'},
+ '234280': {n:'鸣潮',s:'7.1',f:'1343万',r:'15.6万',tags:['开放世界','动作','二次元','科幻'],c:'口碑神作',c2:'cluster-a',cover:'../assets/covers/234280.png',
+   stars:[[5,55],[4,22],[3,12],[2,5],[1,6]], intro:'《鸣潮》是一款开放世界动作游戏，玩家扮演漂泊者，在废土世界中探索与战斗。'},
+ '239372': {n:'燕云十六声',s:'7.1',f:'1061万',r:'3.9万',tags:['开放世界','武侠','动作','历史'],c:'口碑神作',c2:'cluster-a',cover:'../assets/covers/239372.png',
+   stars:[[5,52],[4,23],[3,13],[2,6],[1,6]], intro:'《燕云十六声》是一款以五代十国为背景的开放世界武侠游戏，强调真实江湖体验。'},
+ '229966': {n:'永劫无间',s:'6.7',f:'1400万',r:'3.8万',tags:['动作','竞技','武侠','多人联机'],c:'争议/待改进',c2:'cluster-d',cover:'../assets/covers/229966.png',
+   stars:[[5,48],[4,23],[3,14],[2,7],[1,8]], intro:'《永劫无间》是一款多人动作竞技游戏，以冷兵器对战与生存竞技为核心。'}
+};
+var SIM = ['49995','43639','62448','224267'];
+
+function qs(k){return new URLSearchParams(location.search).get(k);}
+function init(){
+  var id = qs('id') || '206776';
+  var g = INFO[id] || INFO['206776'];
+  document.getElementById('cover').innerHTML = '<span>🎮</span><img class="cover-img" src="'+g.cover+'" alt="" onerror="this.remove()">';
+  document.getElementById('name').textContent = g.n;
+  document.getElementById('score').textContent = g.s;
+  document.getElementById('fans').textContent = g.f;
+  document.getElementById('review').textContent = g.r;
+  document.getElementById('intro').textContent = g.intro;
+  var tg=document.getElementById('tags'); tg.innerHTML='';
+  g.tags.forEach(function(t){tg.insertAdjacentHTML('beforeend','<span class="tag" style="padding:4px 12px;">'+t+'</span>');});
+  var cl=document.getElementById('cluster'); cl.textContent=g.c; cl.className=g.c2;
+  var st=document.getElementById('stars'); st.innerHTML='';
+  g.stars.forEach(function(s){
+    st.insertAdjacentHTML('beforeend','<div class="star-row"><span style="width:34px;">'+s[0]+'星</span><div class="bar"><i style="width:'+s[1]+'%"></i></div><span>'+s[1]+'%</span></div>');
+  });
+  var sg=document.getElementById('similar'); sg.innerHTML='';
+  SIM.forEach(function(i){
+    var x=INFO[i];
+    sg.insertAdjacentHTML('beforeend','<div class="card game-card" onclick="location.href=\'detail.html?id='+i+'\'"><div class="game-name">'+x.n+'</div><div class="game-meta">'+x.tags.join(' · ')+' · ⭐'+x.s+'</div></div>');
+  });
+}
+function toggleFav(){ var b=document.getElementById('btnFav'); if(b.textContent.indexOf('☆')===0){b.textContent='★ 已收藏'; alert('已加入收藏（行为已记录，将影响推荐）');} else {b.textContent='☆ 收藏'; alert('已取消收藏');} }
+function togglePlay(){ var b=document.getElementById('btnPlay'); b.textContent = b.textContent==='玩过' ? '✓ 已玩过' : '玩过'; alert('演示：标记「玩过」'); }
+init();
+</script>
+</body>
+</html>

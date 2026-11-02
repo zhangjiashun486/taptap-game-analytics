@@ -1,0 +1,46 @@
+{
+  "app/v6/detail": [
+    {
+      "file": "app.asar",
+      "context": "P_AUTH_LOGOUT_ALLOWED_PREFIXES=[\"/steam/\"],WEB_APP_XUA_ALLOWED_PATHS=new Set([\"/app/v6/detail\"]),activeRequests=new Map,senderCleanupBound$1=new WeakSet,REMOTE_REQUEST_ACTIO"
+    },
+    {
+      "file": "renderer\\assets\\router-B9i9KRxJ.js",
+      "context": "\"/pc-package/v2/detail\",{params:e},{alert:!0,msg:t?.msg??!0}),ift=async e=>Cn(\"/app/v6/detail\",{params:{platform:\"pc\",...e}}),sft=async e=>Cn(\"/app/v1/steam-price\",{params:e"
+    },
+    {
+      "file": "renderer\\assets\\router-CnEjBMUr.js",
+      "context": "\"/pc-package/v2/detail\",{params:e},{alert:!0,msg:t?.msg??!0}),ELe=async e=>Kt(\"/app/v6/detail\",{params:{platform:\"pc\",...e}}),DLe=async e=>Kt(\"/video-resource/v1/multi-get\","
+    }
+  ],
+  "pc-game/v2/list": [
+    {
+      "file": "renderer\\assets\\AppCollectionPage-CJEYo5dd.js",
+      "context": "ey||\"collection\");$(()=>({event_id:u.value})),P(u,()=>{d()});const a=I.useGet(\"/pc-game/v2/list\").useInfiniteQuery({params:()=>({type:y.value,value:u.value})}),t=s(()=>(a.data"
+    },
+    {
+      "file": "renderer\\assets\\AppRankingPage-BB9rNqBH.js",
+      "context": "e:{}},emits:[\"fetched\",\"clickApp\"],setup(v,{emit:n}){const r=v,t=n,e=G.useGet(\"/pc-game/v2/list\").useInfiniteQuery({params:()=>({type:\"rank\",value:r.rankType}),immediate:!1}),"
+    },
+    {
+      "file": "renderer\\assets\\CloudGameCollectionPage-DQbAQT6T.js",
+      "context": "i){const a=r2(),c=X(),f=l(()=>c.query.key||\"cloud_game\");W();const s=F.useGet(\"/pc-game/v2/list\").useInfiniteQuery({params:()=>({type:f.value})}),g=F.useGet(\"/cloud-game/v3/ti"
+    },
+    {
+      "file": "renderer\\assets\\router-B9i9KRxJ.js",
+      "context": "block:{},pageBlockIndex:{}},setup(e){const t=H2e(243,243,249),n=e,a=it.useGet(\"/pc-game/v2/list\").useInfiniteQuery({url:()=>n.block.next_page,params:{limit:16},initialData:{li"
+    },
+    {
+      "file": "renderer\\assets\\router-B9i9KRxJ.js",
+      "context": "gth),r=B(n.value[0]);ie(n,()=>{r.value=n.value[0]});const o=B(\"\"),i=it.useGet(\"/pc-game/v2/list\").useInfiniteQuery({url:()=>r.value?.url,params:()=>({...r.value?.url_params,pl"
+    },
+    {
+      "file": "renderer\\assets\\router-CnEjBMUr.js",
+      "context": "ctionBlock\",props:{block:{},pageBlockIndex:{}},setup(e){const t=e,n=Xe.useGet(\"/pc-game/v2/list\").useInfiniteQuery({url:()=>t.block.next_page,params:{limit:16},initialData:{li"
+    },
+    {
+      "file": "renderer\\assets\\router-CnEjBMUr.js",
+      "context": "gth),r=j(n.value[0]);ue(n,()=>{r.value=n.value[0]});const i=j(\"\"),o=Xe.useGet(\"/pc-game/v2/list\").useInfiniteQuery({url:()=>r.value?.url,params:()=>({...r.value?.url_params,pl"
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><title>管理端 - 原型</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner">
+  <a class="logo" href="../index.html">TapTap<small>·管理端原型</small></a>
+  <div style="margin-left:auto;" class="muted">管理员：admin <a href="../index.html" style="margin-left:10px;">退出</a></div>
+</div></div>
+<div class="page row" style="align-items:flex-start;">
+  <div class="side">
+    <a class="on" data-sec="overview" onclick="go('overview',this)">📊 总览</a>
+    <a data-sec="users" onclick="go('users',this)">👥 用户管理</a>
+    <a data-sec="crawl" onclick="go('crawl',this)">🕷️ 采集流程</a>
+    <a data-sec="clean" onclick="go('clean',this)">🧹 清洗/归一化</a>
+    <a data-sec="cluster" onclick="go('cluster',this)">🧪 聚类分析</a>
+    <a data-sec="behavior" onclick="go('behavior',this)">📈 平台行为分析</a>
+    <a data-sec="qaconf" onclick="go('qaconf',this)">🤖 问答/大模型</a>
+  </div>
+  <div class="content">
+
+    <section id="sec-overview">
+      <h2>📊 平台总览</h2>
+      <div class="grid g4 mb">
+        <div class="card" style="text-align:center;"><div class="kpi">10,221</div><small class="muted">采集游戏（ID）</small></div>
+        <div class="card" style="text-align:center;"><div class="kpi">10,219</div><small class="muted">有效详情数据</small></div>
+        <div class="card" style="text-align:center;"><div class="kpi">2,259</div><small class="muted">覆盖标签</small></div>
+        <div class="card" style="text-align:center;"><div class="kpi">4,326</div><small class="muted">注册用户（演示）</small></div>
+      </div>
+      <div class="grid g2">
+        <div class="card"><h3>最近采集批次</h3>
+          <table><tr><th>批次</th><th>类型</th><th>结果</th><th>时间</th></tr>
+          <tr><td>#C-017</td><td>榜单+标签闭合</td><td>✅ 10,221</td><td>09-09 16:10</td></tr>
+          <tr><td>#D-001</td><td>详情补爬</td><td>✅ 10,219</td><td>09-09 16:30</td></tr></table>
+        </div>
+        <div class="card"><h3>系统状态</h3>
+          <div class="row mb"><span>MySQL</span><span class="pill">正常</span></div>
+          <div class="row mb"><span>采集服务</span><span class="pill">空闲</span></div>
+          <div class="row mb"><span>问答引擎</span><span class="pill" style="background:#999;">规则模式</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-users" style="display:none;">
+      <h2>👥 用户管理</h2>
+      <div class="card">
+        <div class="row between mb"><b>用户列表</b><div class="searchbox" style="max-width:220px;"><input placeholder="搜索用户名…"></div></div>
+        <table><tr><th>ID</th><th>用户名</th><th>昵称</th><th>注册时间</th><th>行为数</th><th>状态</th><th>操作</th></tr>
+        <tr><td>1</td><td>demo_user</td><td>玩家小码</td><td>2026-09-10</td><td>86</td><td>正常</td><td><a class="muted" onclick="alert('查看行为记录')">行为</a> / <a class="muted" onclick="alert('演示：禁用')">禁用</a></td></tr>
+        <tr><td>2</td><td>gamer_li</td><td>老李</td><td>2026-09-10</td><td>45</td><td>正常</td><td>…</td></tr>
+        <tr><td>3</td><td>wang_123</td><td>小王</td><td>2026-09-10</td><td>120</td><td>正常</td><td>…</td></tr>
+      </table></div>
+    </section>
+
+    <section id="sec-crawl" style="display:none;">
+      <h2>🕷️ 数据采集流程可视化</h2>
+      <div class="card">
+        <div class="row between"><h3>批次 #C-017（已完成）</h3><button class="btn" onclick="alert('演示：触发新采集任务（断点续传模式）')">+ 触发采集</button></div>
+        <div class="muted">榜单 6 类 → 标签 2,259 个 → 分页逐页抓取 · 随机延时 0.6~1.3s · 失败自动重试</div>
+        <div class="funnel mt">
+          <div class="row"><span style="width:110px;">发现页面</span><div class="bar" style="flex:1;"><i style="width:100%"></i></div><b>6,942</b></div>
+          <div class="row"><span style="width:110px;">解析条目</span><div class="bar" style="flex:1;"><i style="width:88%"></i></div><b>6,120</b></div>
+          <div class="row"><span style="width:110px;">去重入库</span><div class="bar" style="flex:1;"><i style="width:80%"></i></div><b>10,221</b></div>
+          <div class="row"><span style="width:110px;">详情补爬</span><div class="bar" style="flex:1;"><i style="width:99.9%"></i></div><b>10,219</b></div>
+        </div>
+      </div>
+      <div class="card mt"><h3>采集日志（最近）</h3>
+        <table><tr><th>时间</th><th>任务</th><th>状态</th><th>条数</th><th>耗时</th></tr>
+        <tr><td>16:10:13</td><td>标签闭合爬取</td><td>✅ 完成</td><td>10,221</td><td>28.8min</td></tr>
+        <tr><td>16:30:00</td><td>详情补爬</td><td>✅ 完成</td><td>10,219</td><td>195min</td></tr></table>
+      </div>
+    </section>
+
+    <section id="sec-clean" style="display:none;">
+      <h2>🧹 数据清洗与归一化</h2>
+      <div class="grid g2">
+        <div class="card"><h3>清洗漏斗</h3>
+          <div class="funnel">
+            <div class="row"><span style="width:110px;">原始条目</span><div class="bar" style="flex:1;"><i style="width:100%"></i></div><b>12,348</b></div>
+            <div class="row"><span style="width:110px;">去重后</span><div class="bar" style="flex:1;"><i style="width:85%"></i></div><b>10,221</b></div>
+            <div class="row"><span style="width:110px;">缺失评分剔除</span><div class="bar" style="flex:1;"><i style="width:82%"></i></div><b>9,857</b></div>
+            <div class="row"><span style="width:110px;">最终入库</span><div class="bar" style="flex:1;"><i style="width:82%"></i></div><b>9,857</b></div>
+          </div>
+        </div>
+        <div class="card"><h3>归一化前后对比（评分字段）</h3>
+          <div class="row mb"><span style="width:70px;">原始分布</span><svg width="220" height="60"><rect x="10" y="30" width="60" height="22" fill="#eee"/><rect x="80" y="18" width="70" height="34" fill="#eee"/><rect x="160" y="38" width="55" height="14" fill="#eee"/></svg></div>
+          <div class="row"><span style="width:70px;">Z-Score 后</span><svg width="220" height="60"><rect x="30" y="20" width="160" height="30" fill="#fdd8e6"/><rect x="95" y="16" width="30" height="38" fill="#f25d8e"/></svg></div>
+          <p class="muted mt">说明：数值字段标准化为均值为 0、方差为 1，供聚类使用。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-cluster" style="display:none;">
+      <h2>🧪 聚类分析（过程 + 结果）</h2>
+      <div class="grid g2">
+        <div class="card"><h3>K 值选择：肘部法则 + 轮廓系数</h3>
+          <svg width="100%" height="150" viewBox="0 0 300 150">
+            <line x1="10" y1="130" x2="290" y2="130" stroke="#ccc"/><line x1="10" y1="10" x2="10" y2="130" stroke="#ccc"/>
+            <polyline points="30,30 70,42 110,55 150,72 190,95 230,115 270,128" fill="none" stroke="#5c7bff" stroke-width="2"/>
+            <circle cx="150" cy="72" r="5" fill="#f25d8e"/><text x="140" y="60">K=6 拐点</text>
+          </svg>
+          <div class="muted">特征：评分/评论数/关注数/热度/标签向量（Z-Score + PCA 降维）；K=6，轮廓系数 0.42</div>
+        </div>
+        <div class="card"><h3>聚类散点图（PCA 投影）</h3>
+          <svg width="100%" height="150" viewBox="0 0 300 150">
+            <rect x="20" y="20" width="90" height="80" fill="#fde" rx="6"/><text x="55" y="75" fill="#e14c8a" font-size="12">口碑神作</text>
+            <rect x="120" y="40" width="90" height="70" fill="#e3e8ff" rx="6"/><text x="148" y="85" fill="#5c7bff" font-size="12">热门大作</text>
+            <rect x="30" y="105" width="150" height="28" fill="#dcf5ec" rx="6"/><text x="80" y="124" fill="#27b18a" font-size="12">小众佳作/长尾</text>
+          </svg>
+        </div>
+      </div>
+      <div class="card mt"><h3>簇画像（雷达图示意：归一化均值）</h3>
+        <svg width="100%" height="220" viewBox="0 0 340 220">
+          <polygon points="170,20 300,90 250,195 90,195 40,90" fill="none" stroke="#ddd"/>
+          <polygon points="170,55 250,100 220,170 120,170 95,100" fill="#f25d8e30" stroke="#f25d8e"/>
+          <text x="160" y="12">评分</text><text x="300" y="88">热度</text><text x="250" y="205">评论</text><text x="70" y="205">关注</text><text x="20" y="88">标签数</text>
+        </svg>
+        <div class="row"><span class="pill">口碑神作</span><span class="muted">386款 · 平均评分8.6 · 好评占比91% · 代表：我的世界/崩坏星穹铁道/光·遇</span></div>
+        <div class="row mt"><span class="pill" style="background:#5c7bff;">热门大作</span><span class="muted">1,204款 · 高热度高关注 · 代表：原神/王者荣耀/绝区零</span></div>
+      </div>
+      <div class="card mt"><h3>运行记录</h3><table><tr><th>run_id</th><th>K</th><th>特征</th><th>轮廓</th><th>时间</th></tr>
+        <tr><td>R-06</td><td>6</td><td>12维</td><td>0.42</td><td>2026-09-10 15:00</td></tr></table></div>
+    </section>
+
+    <section id="sec-behavior" style="display:none;">
+      <h2>📈 平台用户数据采集与分析可视化</h2>
+      <div class="grid g4 mb">
+        <div class="card" style="text-align:center;"><div class="kpi">86,420</div><small class="muted">行为记录总量</small></div>
+        <div class="card" style="text-align:center;"><div class="kpi">4,326</div><small class="muted">活跃用户</small></div>
+        <div class="card" style="text-align:center;"><div class="kpi">2,180</div><small class="muted">问答调用量</small></div>
+        <div class="card" style="text-align:center;"><div class="kpi">31%</div><small class="muted">推荐点击率</small></div>
+      </div>
+      <div class="grid g2">
+        <div class="card"><h3>行为类型分布</h3>
+          <div class="star-row"><span style="width:60px;">浏览</span><div class="bar"><i style="width:62%"></i></div><span>62%</span></div>
+          <div class="star-row"><span style="width:60px;">收藏</span><div class="bar"><i style="width:18%"></i></div><span>18%</span></div>
+          <div class="star-row"><span style="width:60px;">玩过</span><div class="bar"><i style="width:12%"></i></div><span>12%</span></div>
+          <div class="star-row"><span style="width:60px;">评分</span><div class="bar"><i style="width:8%"></i></div><span>8%</span></div>
+        </div>
+        <div class="card"><h3>用户偏好 Top 标签</h3>
+          <div class="star-row"><span style="width:70px;">休闲/派对</span><div class="bar"><i style="width:66%"></i></div><span>1,280人</span></div>
+          <div class="star-row"><span style="width:70px;">竞技/对抗</span><div class="bar"><i style="width:52%"></i></div><span>1,010人</span></div>
+          <div class="star-row"><span style="width:70px;">开放世界</span><div class="bar"><i style="width:40%"></i></div><span>780人</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-qaconf" style="display:none;">
+      <h2>🤖 问答 / 大模型管理</h2>
+      <div class="card">
+        <div class="row mb"><b>问答模式</b>
+          <span class="pill" style="background:#999;margin-left:10px;" onclick="alert('演示：规则模式为默认，保证无外网可用')">规则检索（当前）</span>
+          <span class="tag" style="cursor:pointer;" onclick="alert('演示：切换大模型模式（需配置 Key，走 RAG）')">大模型 RAG（可选）</span>
+        </div>
+        <div class="row mb"><span style="width:110px;">服务地址</span><input class="searchbox" style="max-width:300px;" placeholder="https://api.example.com/v1" disabled></div>
+        <div class="row mb"><span style="width:110px;">API Key</span><input class="searchbox" style="max-width:300px;" placeholder="sk-****（演示不填）" disabled></div>
+        <div class="row mb"><span style="width:110px;">模型名</span><input class="searchbox" style="max-width:300px;" placeholder="qwen-plus" disabled></div>
+        <button class="btn" onclick="alert('演示：测试问答')">测试问答</button>
+        <button class="btn ghost" onclick="alert('演示：保存配置')">保存配置</button>
+        <h3 class="mt">调用日志（最近）</h3>
+        <table><tr><th>时间</th><th>问题</th><th>模式</th><th>状态</th></tr>
+        <tr><td>15:42</td><td>评分9分以上的单机游戏</td><td>规则</td><td>✅ 命中</td></tr>
+        <tr><td>15:40</td><td>推荐适合新手的休闲游戏</td><td>规则</td><td>✅ 命中</td></tr></table>
+      </div>
+    </section>
+
+  </div>
+</div>
+<div class="footer">TapTap 数据分析平台 · 管理端原型（演示数据）</div>
+<script>
+function go(sec, el){
+  document.querySelectorAll('.side a').forEach(function(a){a.className='';});
+  document.querySelectorAll('.content section').forEach(function(s){s.style.display='none';});
+  document.getElementById('sec-'+sec).style.display='';
+  el.className='on';
+}
+</script>
+</body>
+</html>

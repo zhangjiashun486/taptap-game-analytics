@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>登录/注册 - 原型</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="page" style="max-width:420px;padding-top:60px;">
+  <a href="../index.html" class="muted">← 返回入口</a>
+  <div class="card" style="margin-top:16px;padding:28px;">
+    <div class="logo" style="text-align:center;font-size:24px;margin-bottom:4px;">🎮 TapTap 分析平台</div>
+    <div style="text-align:center;margin:10px 0 18px;">
+      <span class="btn" id="tabLogin" onclick="switchTab('login')">登录</span>
+      <span class="btn ghost" id="tabReg" onclick="switchTab('reg')">注册</span>
+    </div>
+    <form id="formLogin" onsubmit="return doLogin(event)">
+      <label class="muted">用户名</label>
+      <input class="searchbox" style="max-width:none;margin:4px 0 10px;" placeholder="请输入用户名" required>
+      <label class="muted">密码</label>
+      <input class="searchbox" type="password" style="max-width:none;margin:4px 0 16px;" placeholder="请输入密码" required>
+      <button class="btn" style="width:100%;">登 录</button>
+      <p class="muted" style="margin-top:10px;">演示：任意用户名密码可登录（页面跳转到首页）</p>
+    </form>
+    <form id="formReg" style="display:none;" onsubmit="return doReg(event)">
+      <label class="muted">用户名（唯一）</label>
+      <input class="searchbox" style="max-width:none;margin:4px 0 10px;" placeholder="6-20位字母数字" required>
+      <label class="muted">密码</label>
+      <input class="searchbox" type="password" style="max-width:none;margin:4px 0 10px;" placeholder="至少6位" required>
+      <label class="muted">确认密码</label>
+      <input class="searchbox" type="password" style="max-width:none;margin:4px 0 16px;" required>
+      <button class="btn" style="width:100%;">注 册</button>
+    </form>
+  </div>
+</div>
+<script>
+function switchTab(t){
+  document.getElementById('formLogin').style.display = t==='login'?'':'none';
+  document.getElementById('formReg').style.display = t==='reg'?'':'none';
+  var l=document.getElementById('tabLogin'), r=document.getElementById('tabReg');
+  l.className = t==='login'?'btn':'btn ghost';
+  r.className = t==='reg'?'btn':'btn ghost';
+}
+function doLogin(e){ e.preventDefault(); alert('演示：登录成功 → 进入首页'); location.href='home.html'; return false; }
+function doReg(e){ e.preventDefault(); alert('演示：注册成功并自动登录'); location.href='home.html'; return false; }
+</script>
+</body>
+</html>

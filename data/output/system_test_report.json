@@ -1,0 +1,168 @@
+{
+  "time": "2026-09-15 14:44:47",
+  "total": 20,
+  "passed": 20,
+  "failed": 0,
+  "results": [
+    {
+      "name": "data_server 探活",
+      "method": "GET",
+      "url": "/api/health",
+      "http": 200,
+      "pass": true,
+      "info": ""
+    },
+    {
+      "name": "data_server 统计接口",
+      "method": "GET",
+      "url": "/api/stats/overview",
+      "http": 200,
+      "pass": true,
+      "info": ""
+    },
+    {
+      "name": "base_server 探活",
+      "method": "GET",
+      "url": "/api/health",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "数据库连通",
+      "method": "GET",
+      "url": "/api/health/db",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "用户登录(demo_user_01)",
+      "method": "POST",
+      "url": "/api/user/login",
+      "http": 200,
+      "pass": true,
+      "info": "登录成功"
+    },
+    {
+      "name": "管理员登录(admin)",
+      "method": "POST",
+      "url": "/api/admin/login",
+      "http": 200,
+      "pass": true,
+      "info": "登录成功"
+    },
+    {
+      "name": "查看个人信息",
+      "method": "GET",
+      "url": "/api/user/me",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "游戏列表(第1页)",
+      "method": "GET",
+      "url": "/api/game/page",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "游戏搜索(原神)",
+      "method": "GET",
+      "url": "/api/game/page",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "游戏详情(蛋仔派对)",
+      "method": "GET",
+      "url": "/api/game/206776",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "我的行为记录",
+      "method": "GET",
+      "url": "/api/behavior/mine",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "个性化推荐",
+      "method": "GET",
+      "url": "/api/recommend",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "数据问答",
+      "method": "POST",
+      "url": "/api/qa/ask",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "管理端统计-overview",
+      "method": "GET",
+      "url": "/api/admin/stats/overview",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "管理端统计-crawl",
+      "method": "GET",
+      "url": "/api/admin/stats/crawl",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "管理端统计-cluster",
+      "method": "GET",
+      "url": "/api/admin/stats/cluster",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "管理端统计-behavior",
+      "method": "GET",
+      "url": "/api/admin/stats/behavior",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "管理端统计-qa",
+      "method": "GET",
+      "url": "/api/admin/stats/qa",
+      "http": 200,
+      "pass": true,
+      "info": "success"
+    },
+    {
+      "name": "未登录访问受保护接口(应401)",
+      "method": "GET",
+      "url": "/api/game/page",
+      "http": 401,
+      "pass": true,
+      "info": "未登录或缺少 token"
+    },
+    {
+      "name": "普通用户访问管理接口(应403)",
+      "method": "GET",
+      "url": "/api/admin/stats/overview",
+      "http": 403,
+      "pass": true,
+      "info": "需要管理员权限"
+    }
+  ]
+}

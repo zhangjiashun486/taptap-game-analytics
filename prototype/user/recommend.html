@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><title>个性化推荐 - 原型</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner">
+  <a class="logo" href="../index.html">TapTap<small>·课设原型</small></a>
+  <div class="nav">
+    <a href="home.html">首页</a><a class="on" href="recommend.html">推荐</a><a href="qa.html">问答</a><a href="profile.html">我的</a>
+  </div>
+  <div class="searchbox"><input placeholder="搜索游戏 / 标签…"></div>
+  <a class="muted" href="login.html">登录</a>
+</div></div>
+<div class="page">
+  <h2>🎯 猜你喜欢（个性化推荐）</h2>
+  <div class="card mb" style="padding:12px 16px;">
+    <b>为什么推荐这些？</b>
+    <span class="muted">你最近收藏了《蛋仔派对》《第五人格》，系统根据“同聚类（口碑神作）+ 同标签（多人联机/竞技）”为你推荐——结合用户行为与聚类结果。</span>
+  </div>
+  <div class="grid g3" id="recGrid"></div>
+  <h3 class="mt" style="margin-top:30px;">🆕 新用户冷启动推荐（综合评分 + 热度）</h3>
+  <div class="grid g3" id="coldGrid"></div>
+</div>
+<script>
+var REC = [
+ {n:'香肠派对',r:'你收藏的《蛋仔派对》同属「休闲竞技」口碑佳作',t:'射击 · 吃鸡 · 竞技',s:'8.6',c:1,id:58881,cover:'../assets/covers/58881.png'},
+ {n:'光·遇',r:'同属「口碑神作」聚类，多人社交向',t:'社交 · 治愈 · 冒险',s:'7.9',c:3,id:62448,cover:'../assets/covers/62448.png'},
+ {n:'我的世界：移动版',r:'《蛋仔派对》收藏用户大多也喜欢',t:'沙盒 · 创造 · 多人联机',s:'6.6',c:1,id:43639,cover:'../assets/covers/43639.png'},
+ {n:'第五人格',r:'你收藏过，同类「非对称竞技」续推',t:'非对称对抗 · 恐怖',s:'7.3',c:3,id:49995,cover:'../assets/covers/49995.jpg'},
+ {n:'人类跌落梦境',r:'同「多人联机 + 休闲」标签',t:'物理 · 解谜 · 多人联机',s:'7.2',c:1,id:71417,cover:'../assets/covers/71417.png'},
+ {n:'荒野乱斗',r:'同「竞技 + 派对」标签',t:'MOBA · 竞技 · 3v3',s:'5.4',c:2,id:192705,cover:'../assets/covers/192705.png'}
+];
+var COLD = [
+ {n:'原神',s:'7.9',f:'3891万关注',t:'开放世界 · 二次元',c:4,id:168332,cover:'../assets/covers/168332.png'},
+ {n:'王者荣耀',s:'5.0',f:'9830万关注',t:'MOBA · 竞技',c:2,id:2301,cover:'../assets/covers/2301.png'},
+ {n:'蛋仔派对',s:'7.8',f:'3870万关注',t:'休闲 · 竞技',c:1,id:206776,cover:'../assets/covers/206776.png'},
+ {n:'崩坏：星穹铁道',s:'7.5',f:'1970万关注',t:'回合制 · 科幻',c:4,id:224267,cover:'../assets/covers/224267.png'}
+];
+function render(list, el){
+  var box=document.getElementById(el); box.innerHTML='';
+  list.forEach(function(x){
+    box.insertAdjacentHTML('beforeend',
+      '<div class="card game-card" onclick="location.href=\'detail.html?id='+x.id+'\'">'+
+      '<div class="game-cover c'+(x.c||1)+'"><span>🎮</span><img class="cover-img" src="'+x.cover+'" alt="" onerror="this.remove()"></div><div class="game-name">'+x.n+'</div>'+
+      '<div class="game-meta">'+x.t+' · ⭐'+x.s+'</div>'+
+      (x.r?'<p class="muted" style="margin-top:6px;font-size:12px;background:#f9f9f9;border-radius:8px;padding:6px 8px;">💡 '+x.r+'</p>':'<div class="muted" style="font-size:12px;margin-top:6px;">'+x.f+'</div>')+
+      '</div>');
+  });
+}
+render(REC,'recGrid'); render(COLD,'coldGrid');
+</script>
+</body>
+</html>

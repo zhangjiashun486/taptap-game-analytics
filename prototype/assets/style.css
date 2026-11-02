@@ -1,0 +1,69 @@
+/* TapTap 课设原型 - 共享样式 */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Microsoft YaHei","PingFang SC",sans-serif; background:#f4f5f7; color:#222; }
+a { text-decoration:none; color:inherit; }
+.topbar { background:#fff; border-bottom:1px solid #eee; position:sticky; top:0; z-index:50; }
+.topbar-inner { max-width:1100px; margin:auto; display:flex; align-items:center; gap:24px; padding:10px 16px; }
+.logo { font-weight:800; font-size:20px; color:#f25d8e; }
+.logo small { color:#999; font-weight:400; font-size:12px; }
+.nav a { margin-right:18px; color:#444; font-size:14px; padding:6px 2px; }
+.nav a.on, .nav a:hover { color:#f25d8e; font-weight:600; }
+.searchbox { flex:1; max-width:320px; margin-left:auto; }
+.searchbox input { width:100%; padding:7px 12px; border:1px solid #ddd; border-radius:20px; outline:none; font-size:13px; }
+.page { max-width:1100px; margin:auto; padding:20px 16px 60px; }
+.card { background:#fff; border-radius:12px; padding:16px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+.grid { display:grid; gap:14px; }
+.g4 { grid-template-columns:repeat(4,1fr); }
+.g3 { grid-template-columns:repeat(3,1fr); }
+.g2 { grid-template-columns:repeat(2,1fr); }
+@media (max-width:900px){ .g4{grid-template-columns:repeat(2,1fr);} .g3,.g2{grid-template-columns:1fr;} }
+.game-card { cursor:pointer; transition:.15s; }
+.game-card:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.1); }
+.game-cover { height:110px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:34px; background:linear-gradient(135deg,#f25d8e,#7b5cff); }
+.game-cover.c2 { background:linear-gradient(135deg,#39c,#27e0a3); }
+.game-cover.c3 { background:linear-gradient(135deg,#ff9d3c,#f25d8e); }
+.game-cover.c4 { background:linear-gradient(135deg,#5c7bff,#39c); }
+.game-name { margin-top:8px; font-weight:600; font-size:14px; }
+.game-meta { color:#999; font-size:12px; margin-top:3px; }
+.tag { display:inline-block; background:#f5f5f5; color:#666; border-radius:10px; padding:1px 8px; font-size:12px; margin:2px 3px 0 0; }
+.btn { display:inline-block; background:#f25d8e; color:#fff; border:none; border-radius:20px; padding:8px 20px; font-size:14px; cursor:pointer; }
+.btn.ghost { background:#fff; color:#f25d8e; border:1px solid #f25d8e; }
+.btn.dark { background:#333; }
+h2 { font-size:20px; margin:6px 0 14px; }
+h3 { font-size:16px; margin-bottom:10px; }
+.muted { color:#888; font-size:13px; }
+.row { display:flex; align-items:center; gap:12px; }
+.between { justify-content:space-between; }
+.mt { margin-top:16px; } .mb { margin-bottom:16px; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th,td { text-align:left; padding:8px 10px; border-bottom:1px solid #f0f0f0; }
+th { color:#888; font-weight:500; background:#fafafa; }
+.bar { background:#f0f0f0; border-radius:6px; height:14px; overflow:hidden; }
+.bar i { display:block; height:100%; background:linear-gradient(90deg,#f25d8e,#ff8fb0); border-radius:6px; }
+.star-row { display:flex; align-items:center; gap:8px; font-size:12px; color:#666; margin:4px 0; }
+.star-row .bar { flex:1; }
+.funnel { margin:10px 0; }
+.funnel .row { margin:8px 0; }
+.alert { background:#fff7e6; border:1px solid #ffd591; color:#ad6800; border-radius:8px; padding:10px 14px; font-size:13px; margin:12px 0; }
+.pill { background:#f25d8e; color:#fff; border-radius:12px; font-size:12px; padding:2px 10px; }
+.cluster-a{color:#e14c8a;} .cluster-b{color:#5c7bff;} .cluster-c{color:#27b18a;} .cluster-d{color:#f09b2e;}
+.qa-item { border:1px solid #eee; border-radius:10px; padding:10px 12px; margin:8px 0; }
+.qa-q { font-weight:600; } .qa-a { color:#555; margin-top:4px; font-size:14px; }
+.msg { background:#f6f6f6; border-radius:16px; padding:10px 14px; margin:6px 0; max-width:80%; }
+.msg.me { background:#f25d8e; color:#fff; margin-left:auto; }
+.chat { max-width:760px; }
+.side { width:210px; background:#fff; border-radius:12px; padding:12px; }
+.side a { display:block; padding:9px 12px; border-radius:8px; color:#444; font-size:14px; margin-bottom:2px; }
+.side a.on { background:#f25d8e10; color:#f25d8e; font-weight:600; }
+.content { flex:1; }
+.kpi { font-size:24px; font-weight:800; }
+.kpi small { display:block; font-size:12px; color:#999; font-weight:400; margin-top:2px; }
+.footer { text-align:center; color:#aaa; font-size:12px; padding:20px; }
+svg text { font-size:11px; fill:#666; }
+
+/* ===== 真实游戏封面 ===== */
+.game-cover { position: relative; overflow: hidden; }
+.cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.detail-cover { position: relative; width:150px; height:150px; border-radius:12px; overflow:hidden;
+  background:linear-gradient(135deg,#f25d8e,#7b5cff); display:flex; align-items:center; justify-content:center; font-size:56px; }
+.mini-cover { width:26px; height:26px; border-radius:6px; object-fit:cover; vertical-align:middle; margin-right:8px; }

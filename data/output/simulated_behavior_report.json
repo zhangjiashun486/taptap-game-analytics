@@ -1,0 +1,13 @@
+{
+  "users": 20,
+  "total_behaviors": 821,
+  "by_type": {
+    "VIEW": 460,
+    "RATE": 99,
+    "LIKE": 71,
+    "PLAYED": 90,
+    "FAVORITE": 101
+  },
+  "password": "123456",
+  "seed": 42
+}

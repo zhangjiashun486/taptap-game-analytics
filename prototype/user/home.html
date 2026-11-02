@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>首页/榜单 - 原型</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner">
+  <a class="logo" href="../index.html">TapTap<small>·课设原型</small></a>
+  <div class="nav">
+    <a class="on" href="home.html">首页</a>
+    <a href="recommend.html">推荐</a>
+    <a href="qa.html">问答</a>
+    <a href="profile.html">我的</a>
+  </div>
+  <div class="searchbox"><input placeholder="搜索游戏 / 标签…" onkeydown="if(event.key==='Enter')alert('演示：搜索「'+this.value+'」')"></div>
+  <a class="muted" href="login.html">登录</a>
+</div></div>
+
+<div class="page">
+  <div class="row between"><h2>🔥 热门榜单</h2>
+    <div><span class="pill" id="tabHot" onclick="switchTab('hot',this)">热门</span>
+    <span class="tag" onclick="switchTab('new',this)" style="cursor:pointer">新品</span>
+    <span class="tag" onclick="switchTab('reserve',this)" style="cursor:pointer">预约</span>
+    <span class="tag" onclick="switchTab('play',this)" style="cursor:pointer">热玩</span></div>
+  </div>
+  <div class="grid g4" id="gameGrid"></div>
+
+  <h3 class="mt" style="margin-top:30px;">🪤 按类型找游戏</h3>
+  <div>
+    <span class="tag" style="cursor:pointer;padding:6px 14px;font-size:13px;" onclick="alert('演示：筛选 竞技')">竞技</span>
+    <span class="tag" style="cursor:pointer;padding:6px 14px;font-size:13px;" onclick="alert('演示：筛选 休闲')">休闲</span>
+    <span class="tag" style="cursor:pointer;padding:6px 14px;font-size:13px;" onclick="alert('演示：筛选 单机')">单机</span>
+    <span class="tag" style="cursor:pointer;padding:6px 14px;font-size:13px;" onclick="alert('演示：筛选 二次元')">二次元</span>
+  </div>
+
+  <div class="card mt" style="margin-top:26px;">
+    <h3>📈 聚类结果预览（管理端可看完整分析过程）</h3>
+    <div class="grid g4" style="text-align:center;">
+      <div><div class="kpi cluster-a">口碑神作</div><small class="muted">高分高关注 · 386款</small></div>
+      <div><div class="kpi cluster-b">热门大作</div><small class="muted">高热度 · 1,204款</small></div>
+      <div><div class="kpi cluster-c">小众佳作</div><small class="muted">高口碑低关注 · 2,018款</small></div>
+      <div><div class="kpi cluster-d">预约爆款</div><small class="muted">高预约 · 231款</small></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var DB = {
+ hot: [
+  {n:'蛋仔派对',t:'休闲 · 竞技 · 多人联机',s:'7.8',f:'3870万关注',c:1,id:206776,cover:'../assets/covers/206776.png'},
+  {n:'原神',t:'开放世界 · 二次元 · RPG',s:'7.9',f:'3891万关注',c:4,id:168332,cover:'../assets/covers/168332.png'},
+  {n:'王者荣耀',t:'MOBA · 竞技 · PVP',s:'5.0',f:'9830万关注',c:2,id:2301,cover:'../assets/covers/2301.png'},
+  {n:'崩坏：星穹铁道',t:'回合制 · 二次元 · 科幻',s:'7.5',f:'1970万关注',c:4,id:224267,cover:'../assets/covers/224267.png'},
+  {n:'香肠派对',t:'射击 · 吃鸡 · 竞技',s:'8.6',f:'4334万关注',c:1,id:58881,cover:'../assets/covers/58881.png'},
+  {n:'第五人格',t:'非对称对抗 · 恐怖',s:'7.3',f:'2280万关注',c:3,id:49995,cover:'../assets/covers/49995.jpg'},
+  {n:'我的世界：移动版',t:'沙盒 · 创造 · 冒险',s:'6.6',f:'3994万关注',c:1,id:43639,cover:'../assets/covers/43639.png'},
+  {n:'光·遇',t:'社交 · 治愈 · 冒险',s:'7.9',f:'2237万关注',c:3,id:62448,cover:'../assets/covers/62448.png'}
+ ],
+ new: [
+  {n:'绝区零',t:'动作 · 二次元 · ARPG',s:'6.7',f:'1410万关注',c:2,id:234493,cover:'../assets/covers/234493.png'},
+  {n:'鸣潮',t:'开放世界 · 动作 · 二次元',s:'7.1',f:'1343万关注',c:4,id:234280,cover:'../assets/covers/234280.png'},
+  {n:'燕云十六声',t:'开放世界 · 武侠',s:'7.1',f:'1061万关注',c:2,id:239372,cover:'../assets/covers/239372.png'},
+  {n:'永劫无间',t:'动作 · 竞技 · 武侠',s:'6.7',f:'1400万关注',c:2,id:229966,cover:'../assets/covers/229966.png'}
+ ],
+ reserve: [
+  {n:'猛兽派对',t:'派对 · 休闲 · 多人联机',s:'8.6',f:'749万预约',c:4,id:200818,cover:'../assets/covers/200818.png'},
+  {n:'未来之役',t:'射击 · 吃鸡 · 战术',s:'8.3',f:'531万预约',c:2,id:207433,cover:'../assets/covers/207433.png'},
+  {n:'无限大',t:'开放世界 · 都市 · 二次元',s:'8.3',f:'368万预约',c:4,id:383874,cover:'../assets/covers/383874.png'},
+  {n:'糖豆人：终极淘汰赛手游',t:'派对 · 休闲 · 闯关',s:'7.5',f:'308万预约',c:1,id:197651,cover:'../assets/covers/197651.png'}
+ ],
+ play: [
+  {n:'第五人格',t:'非对称对抗 · 恐怖',s:'7.3',f:'2280万关注',c:3,id:49995,cover:'../assets/covers/49995.jpg'},
+  {n:'蛋仔派对',t:'休闲 · 竞技',s:'7.8',f:'3870万关注',c:1,id:206776,cover:'../assets/covers/206776.png'}
+ ]
+};
+function render(key){
+  var g = document.getElementById('gameGrid'); g.innerHTML='';
+  (DB[key]||DB.hot).forEach(function(x){
+    g.insertAdjacentHTML('beforeend',
+     '<div class="card game-card" onclick="location.href=\'detail.html?id='+x.id+'\'">'+
+     '<div class="game-cover c'+(x.c||1)+'"><span>🎮</span><img class="cover-img" src="'+x.cover+'" alt="" onerror="this.remove()"></div>'+
+     '<div class="game-name">'+x.n+'</div>'+
+     '<div class="game-meta">'+x.t+'</div>'+
+     '<div class="row between"><span class="tag">⭐ '+x.s+'</span><span class="muted">'+x.f+'</span></div></div>');
+  });
+}
+function switchTab(k,el){
+  var arr=document.querySelectorAll('#tabHot,.tag');
+  arr.forEach(function(t){ if(t.id==='tabHot'){t.className='tag';} });
+  el.className='pill'; render(k);
+}
+render('hot');
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# TapTap 课设 - Python 数据服务依赖
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pymysql>=1.1
+scikit-learn>=1.5
+numpy>=1.26
+python-dotenv>=1.0
